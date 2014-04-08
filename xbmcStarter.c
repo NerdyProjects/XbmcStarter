@@ -72,14 +72,17 @@ int main (int argc, char **argv)
 {
   struct MHD_Daemon *daemon;
   int port = 0;
+  int args = 0;
 
   sem_init(&startReq, 0, 0);
-  if(argc != 2) {
+  if(argc == 2) {
+    args = sscanf(argv[1], "%d", &port);
+  }
+
+  if(argc != 2 || !args) {
     fprintf(stderr, "Usage: %s <Port number>\n", argv[0]);
     return 1;
   }
-
-  sscanf(argv[1], "%d", &port);
 
   if(port < 0 || port > 65535) {
     fprintf(stderr, "Invalid port number: %d, must  be between 1 and 65535\n", port);
