@@ -1,0 +1,15 @@
+XbmcStarter is a small utility that can be used to start XBMC via its webinterface.
+
+It listens on the same port as XBMC and starts it when there comes a standard json requests.
+
+Tested so far with Yatse for Android and a webbrowser.
+
+Warning: Yatse widget will always start XBMC as it sends periodically requests when there are faulty answers.
+
+You can edit the XBMC path and listening port directly in the source.
+
+Use xbmcStarter in your .xinitrc, eg:
+
+  exec xbmcStarter/xbmcStarter
+
+as last line.
