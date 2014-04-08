@@ -13,3 +13,8 @@ Use xbmcStarter in your .xinitrc, eg:
   exec xbmcStarter/xbmcStarter
 
 as last line.
+  
+
+Warning: Do not use this over the internet, I did not take any responsibility for security!
+
+
