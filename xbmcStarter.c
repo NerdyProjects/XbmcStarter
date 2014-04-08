@@ -29,7 +29,6 @@
 #include <semaphore.h>
 #include <unistd.h>
 
-#define PORT 8081
 const char *PAGE_INFO  = "<html><body><a href=\"/jsonrpc\">Start XBMC</body></html>";
 const char *PAGE_START  = "<html><head><meta http-equiv=\"refresh\" content=\"2;URL='/'\" /></head><body>Reloading <a href="">XBMC Interface</a>... !</body></html>";
 
@@ -72,12 +71,24 @@ int answer_to_connection (void *cls, struct MHD_Connection *connection,
 int main (int argc, char **argv)
 {
   struct MHD_Daemon *daemon;
+  int port = 0;
 
   sem_init(&startReq, 0, 0);
+  if(argc != 2) {
+    fprintf(stderr, "Usage: %s <Port number>\n", argv[0]);
+    return 1;
+  }
+
+  sscanf(argv[1], "%d", &port);
+
+  if(port < 0 || port > 65535) {
+    fprintf(stderr, "Invalid port number: %d, must  be between 1 and 65535\n", port);
+    return 1;
+  }
 
   while(1) {
     pid_t pid;
-    daemon = MHD_start_daemon (MHD_USE_SELECT_INTERNALLY | MHD_USE_DEBUG, PORT, NULL, NULL, 
+    daemon = MHD_start_daemon (MHD_USE_SELECT_INTERNALLY | MHD_USE_DEBUG, port, NULL, NULL, 
         &answer_to_connection, NULL, MHD_OPTION_CONNECTION_TIMEOUT, (unsigned int) 10, MHD_OPTION_END);
     if (NULL == daemon)
       return 1;

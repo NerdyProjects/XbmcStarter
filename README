@@ -10,7 +10,7 @@ You can edit the XBMC path and listening port directly in the source.
 
 Use xbmcStarter in your .xinitrc, eg:
 
-  exec xbmcStarter/xbmcStarter
+  exec xbmcStarter/xbmcStarter 8080
 
 as last line.
   

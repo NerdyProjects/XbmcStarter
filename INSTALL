@@ -1,0 +1,11 @@
+Using make:
+
+run make and copy XbmcStarter to the destination of your choice
+
+Using CMake:
+
+mkdir build
+cd build
+cmake ../
+make
+make install
