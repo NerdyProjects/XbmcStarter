@@ -1,0 +1,5 @@
+cmake_minimum_required (VERSION 2.6)
+project (XbmcStarter)
+add_executable(XbmcStarter xbmcStarter.c)
+target_link_libraries (XbmcStarter pthread microhttpd)
+install (TARGETS XbmcStarter DESTINATION bin)
